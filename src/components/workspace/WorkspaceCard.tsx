@@ -60,21 +60,21 @@ const WorkspaceCard: React.FC<WorkspaceCardProps> = ({ workspace, size = 'md' })
         {/* Amenities */}
         <div className="flex items-center mb-4 space-x-3">
           {workspace.features.wifi && (
-            <div className="text-xs flex items-center text-gray-600" title="WiFi Available">
+            <div className="text-xs flex items-center text-gray-600" title="WiFi Disponible">
               <Wifi size={14} className="mr-1" />
               <span>WiFi</span>
             </div>
           )}
           {workspace.features.powerOutlets && (
-            <div className="text-xs flex items-center text-gray-600" title="Power Outlets">
+            <div className="text-xs flex items-center text-gray-600" title="Enchufes Disponibles">
               <Power size={14} className="mr-1" />
-              <span>Power</span>
+              <span>Enchufes</span>
             </div>
           )}
           {workspace.features.coffee && (
-            <div className="text-xs flex items-center text-gray-600" title="Coffee Available">
+            <div className="text-xs flex items-center text-gray-600" title="Café Disponible">
               <Coffee size={14} className="mr-1" />
-              <span>Coffee</span>
+              <span>Café</span>
             </div>
           )}
         </div>
@@ -82,14 +82,14 @@ const WorkspaceCard: React.FC<WorkspaceCardProps> = ({ workspace, size = 'md' })
         {/* Price and CTA */}
         <div className="flex items-center justify-between">
           <div className="text-primary-900">
-            <span className="font-semibold">${workspace.price.hourly}</span>
-            <span className="text-sm text-gray-600">/hour</span>
+            <span className="font-semibold">Bs. {workspace.price.hourly}</span>
+            <span className="text-sm text-gray-600">/hora</span>
           </div>
           <Link 
             to={`/workspace/${workspace.id}`} 
             className="btn btn-primary btn-sm"
           >
-            View Details
+            Ver Detalles
           </Link>
         </div>
       </div>

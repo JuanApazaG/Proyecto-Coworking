@@ -12,10 +12,10 @@ const Footer: React.FC = () => {
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
             <div className="flex items-center mb-4">
               <Logo color="white" />
-              <span className="ml-2 text-xl font-bold">WorkSpotter</span>
+              <span className="ml-2 text-xl font-bold">SumaqHub</span>
             </div>
             <p className="text-gray-400 mb-6">
-              Connecting digital nomads, freelancers, and students with productive workspaces since 2025.
+              Conectando nómadas digitales, freelancers y estudiantes con espacios de trabajo productivos desde 2025.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -35,26 +35,26 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Quick Links</h4>
+            <h4 className="font-semibold text-lg mb-4">Enlaces Rápidos</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-400 hover:text-white transition-colors">
-                  Home
+                  Inicio
                 </Link>
               </li>
               <li>
                 <Link to="/search" className="text-gray-400 hover:text-white transition-colors">
-                  Find Workspaces
+                  Buscar Espacios
                 </Link>
               </li>
               <li>
                 <Link to="/profile" className="text-gray-400 hover:text-white transition-colors">
-                  My Bookings
+                  Mis Reservas
                 </Link>
               </li>
               <li>
                 <Link to="/dashboard" className="text-gray-400 hover:text-white transition-colors">
-                  Owner Dashboard
+                  Panel de Control
                 </Link>
               </li>
             </ul>
@@ -62,26 +62,26 @@ const Footer: React.FC = () => {
 
           {/* Workspace Types */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Workspace Types</h4>
+            <h4 className="font-semibold text-lg mb-4">Tipos de Espacios</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/search?type=coworking" className="text-gray-400 hover:text-white transition-colors">
-                  Coworking Spaces
+                  Espacios de Coworking
                 </Link>
               </li>
               <li>
                 <Link to="/search?type=cafe" className="text-gray-400 hover:text-white transition-colors">
-                  Cafes
+                  Cafeterías
                 </Link>
               </li>
               <li>
                 <Link to="/search?type=library" className="text-gray-400 hover:text-white transition-colors">
-                  Libraries
+                  Bibliotecas
                 </Link>
               </li>
               <li>
                 <Link to="/search?type=hotel" className="text-gray-400 hover:text-white transition-colors">
-                  Hotel Lobbies
+                  Lobbies de Hoteles
                 </Link>
               </li>
             </ul>
@@ -89,12 +89,12 @@ const Footer: React.FC = () => {
 
           {/* Contact Information */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Contact Us</h4>
+            <h4 className="font-semibold text-lg mb-4">Contáctanos</h4>
             <ul className="space-y-3">
               <li className="flex items-center">
                 <Mail size={18} className="mr-2 text-gray-400" />
-                <a href="mailto:info@workspotter.com" className="text-gray-400 hover:text-white transition-colors">
-                  info@workspotter.com
+                <a href="mailto:info@sumaqhub.com" className="text-gray-400 hover:text-white transition-colors">
+                  info@sumaqhub.com
                 </a>
               </li>
               <li className="flex items-center">
@@ -110,17 +110,17 @@ const Footer: React.FC = () => {
         {/* Bottom Section */}
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} WorkSpotter. All rights reserved.
+            &copy; {new Date().getFullYear()} SumaqHub. Todos los derechos reservados.
           </p>
           <div className="flex space-x-6">
             <Link to="/terms" className="text-gray-500 hover:text-white text-sm transition-colors">
-              Terms of Service
+              Términos de Servicio
             </Link>
             <Link to="/privacy" className="text-gray-500 hover:text-white text-sm transition-colors">
-              Privacy Policy
+              Política de Privacidad
             </Link>
             <Link to="/cookies" className="text-gray-500 hover:text-white text-sm transition-colors">
-              Cookie Policy
+              Política de Cookies
             </Link>
           </div>
         </div>

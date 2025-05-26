@@ -24,7 +24,7 @@ const OwnerDashboardPage: React.FC = () => {
       customerName: 'Jamie Smith',
       date: '2023-05-10',
       time: '09:00 - 17:00',
-      status: 'confirmed',
+      status: 'confirmado',
       amount: 45
     },
     {
@@ -33,16 +33,16 @@ const OwnerDashboardPage: React.FC = () => {
       customerName: 'Riley Martinez',
       date: '2023-05-12',
       time: '10:00 - 14:00',
-      status: 'confirmed',
+      status: 'confirmado',
       amount: 20
     },
     {
       id: 'book103',
-      workspaceName: 'Innovation Hub',
+      workspaceName: 'Hub de Innovación',
       customerName: 'Taylor Wong',
       date: '2023-05-15',
       time: '08:00 - 18:00',
-      status: 'pending',
+      status: 'pendiente',
       amount: 50
     }
   ];
@@ -51,11 +51,7 @@ const OwnerDashboardPage: React.FC = () => {
   const MyWorkspacesTab = () => (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold">My Workspaces</h2>
-        <button className="btn btn-primary btn-sm flex items-center">
-          <PlusCircle size={16} className="mr-2" />
-          Add Workspace
-        </button>
+        <h2 className="text-xl font-semibold">Mis Espacios</h2>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -71,7 +67,7 @@ const OwnerDashboardPage: React.FC = () => {
               <div className="absolute top-2 right-2">
                 <button 
                   className="w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center text-gray-700 hover:text-primary-900 transition-colors"
-                  aria-label="Edit workspace"
+                  aria-label="Editar espacio"
                 >
                   <Edit size={16} />
                 </button>
@@ -87,7 +83,7 @@ const OwnerDashboardPage: React.FC = () => {
                     ? 'bg-green-100 text-green-800' 
                     : 'bg-gray-100 text-gray-800'
                 }`}>
-                  {workspace.popular ? 'Popular' : 'Active'}
+                  {workspace.popular ? 'Popular' : 'Activo'}
                 </span>
               </div>
               
@@ -97,18 +93,18 @@ const OwnerDashboardPage: React.FC = () => {
               
               <div className="flex justify-between items-center text-sm mb-4">
                 <div>
-                  <span className="text-gray-600">Price:</span>
-                  <span className="font-medium ml-1">${workspace.price.hourly}/hr</span>
+                  <span className="text-gray-600">Precio:</span>
+                  <span className="font-medium ml-1">Bs. {workspace.price.hourly}/hora</span>
                 </div>
                 <div>
-                  <span className="text-gray-600">Rating:</span>
+                  <span className="text-gray-600">Calificación:</span>
                   <span className="font-medium ml-1">{workspace.rating} ★</span>
                 </div>
               </div>
               
               <div className="flex space-x-2">
-                <button className="btn btn-secondary btn-sm flex-1">View</button>
-                <button className="btn btn-primary btn-sm flex-1">Edit</button>
+                <button className="btn btn-secondary btn-sm flex-1">Ver</button>
+                <button className="btn btn-primary btn-sm flex-1">Editar</button>
               </div>
             </div>
           </div>
@@ -120,12 +116,12 @@ const OwnerDashboardPage: React.FC = () => {
   const BookingsTab = () => (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold">Bookings</h2>
+        <h2 className="text-xl font-semibold">Reservas</h2>
         <select className="p-2 border border-gray-300 rounded-lg text-sm">
-          <option>All Bookings</option>
-          <option>Confirmed</option>
-          <option>Pending</option>
-          <option>Canceled</option>
+          <option>Todas las Reservas</option>
+          <option>Confirmadas</option>
+          <option>Pendientes</option>
+          <option>Canceladas</option>
         </select>
       </div>
       
@@ -135,25 +131,25 @@ const OwnerDashboardPage: React.FC = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Booking ID
+                  ID Reserva
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Workspace
+                  Espacio
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Customer
+                  Cliente
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Date & Time
+                  Fecha y Hora
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
+                  Estado
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Amount
+                  Monto
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  Acciones
                 </th>
               </tr>
             </thead>
@@ -175,17 +171,19 @@ const OwnerDashboardPage: React.FC = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
-                      ${booking.status === 'confirmed' 
+                      ${booking.status === 'confirmado' 
                         ? 'bg-green-100 text-green-800' 
-                        : 'bg-yellow-100 text-yellow-800'}`}>
-                      {booking.status}
+                        : booking.status === 'pendiente'
+                        ? 'bg-yellow-100 text-yellow-800'
+                        : 'bg-red-100 text-red-800'}`}>
+                      {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    ${booking.amount}
+                    Bs. {booking.amount}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-600 hover:text-blue-900">
-                    <button>View Details</button>
+                    <button>Ver Detalles</button>
                   </td>
                 </tr>
               ))}
@@ -202,22 +200,22 @@ const OwnerDashboardPage: React.FC = () => {
         {/* Total Revenue */}
         <div className="bg-white rounded-xl shadow-md p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-medium text-gray-500">Total Revenue</h3>
+            <h3 className="font-medium text-gray-500">Ingresos Totales</h3>
             <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
               <DollarSign size={20} />
             </div>
           </div>
-          <p className="text-3xl font-bold mb-2">$2,584</p>
+          <p className="text-3xl font-bold mb-2">Bs. 2,584</p>
           <p className="text-sm text-green-600 flex items-center">
             <TrendingUp size={16} className="mr-1" />
-            <span>+12.5% from last month</span>
+            <span>+12.5% respecto al mes pasado</span>
           </p>
         </div>
         
         {/* Total Bookings */}
         <div className="bg-white rounded-xl shadow-md p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-medium text-gray-500">Total Bookings</h3>
+            <h3 className="font-medium text-gray-500">Total de Reservas</h3>
             <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
               <Calendar size={20} />
             </div>
@@ -225,14 +223,14 @@ const OwnerDashboardPage: React.FC = () => {
           <p className="text-3xl font-bold mb-2">48</p>
           <p className="text-sm text-green-600 flex items-center">
             <TrendingUp size={16} className="mr-1" />
-            <span>+8.2% from last month</span>
+            <span>+8.2% respecto al mes pasado</span>
           </p>
         </div>
         
         {/* New Customers */}
         <div className="bg-white rounded-xl shadow-md p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-medium text-gray-500">New Customers</h3>
+            <h3 className="font-medium text-gray-500">Nuevos Clientes</h3>
             <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
               <Users size={20} />
             </div>
@@ -240,32 +238,27 @@ const OwnerDashboardPage: React.FC = () => {
           <p className="text-3xl font-bold mb-2">18</p>
           <p className="text-sm text-green-600 flex items-center">
             <TrendingUp size={16} className="mr-1" />
-            <span>+4.9% from last month</span>
+            <span>+4.9% respecto al mes pasado</span>
           </p>
         </div>
       </div>
       
       {/* Placeholder for chart */}
       <div className="bg-white rounded-xl shadow-md p-6 mb-8">
-        <h3 className="font-semibold mb-6">Revenue Overview</h3>
-        <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
-          <div className="text-center">
-            <BarChart size={40} className="mx-auto text-gray-400 mb-2" />
-            <p className="text-gray-500">
-              This is a simulated chart. In a real application, this would show revenue trends.
-            </p>
-          </div>
+        <h3 className="font-semibold mb-6">Resumen de Ingresos</h3>
+        <div className="h-40 flex items-center justify-center text-gray-400">
+          (Gráfico próximamente)
         </div>
       </div>
       
       {/* Placeholder for another chart */}
       <div className="bg-white rounded-xl shadow-md p-6">
-        <h3 className="font-semibold mb-6">Booking Statistics</h3>
+        <h3 className="font-semibold mb-6">Estadísticas de Reservas</h3>
         <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
           <div className="text-center">
             <BarChart size={40} className="mx-auto text-gray-400 mb-2" />
             <p className="text-gray-500">
-              This is a simulated chart. In a real application, this would show booking statistics.
+              Este es un gráfico simulado. En una aplicación real, este mostraría estadísticas de reservas.
             </p>
           </div>
         </div>
@@ -280,17 +273,17 @@ const OwnerDashboardPage: React.FC = () => {
         <div className="bg-white rounded-xl shadow-md p-6 mb-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold mb-2">Owner Dashboard</h1>
-              <p className="text-gray-600">Manage your workspaces and monitor your business performance</p>
+              <h1 className="text-2xl font-bold mb-2">Tablero de Control del Propietario</h1>
+              <p className="text-gray-600">Administre sus espacios y supervise el rendimiento de su negocio</p>
             </div>
             
             <div className="mt-4 md:mt-0 flex space-x-3">
               <button className="btn btn-secondary btn-sm">
-                Settings
+                Configuración
               </button>
               <button className="btn btn-primary btn-sm flex items-center">
                 <PlusCircle size={16} className="mr-2" />
-                Add New Workspace
+                Agregar Nuevo Espacio
               </button>
             </div>
           </div>
@@ -301,19 +294,19 @@ const OwnerDashboardPage: React.FC = () => {
           tabs={[
             {
               id: 'my-workspaces',
-              label: 'My Workspaces',
+              label: 'Mis Espacios',
               icon: <Home size={16} />,
               content: <MyWorkspacesTab />
             },
             {
               id: 'bookings',
-              label: 'Bookings',
+              label: 'Reservas',
               icon: <Calendar size={16} />,
               content: <BookingsTab />
             },
             {
               id: 'analytics',
-              label: 'Analytics',
+              label: 'Analítica',
               icon: <BarChart size={16} />,
               content: <AnalyticsTab />
             }

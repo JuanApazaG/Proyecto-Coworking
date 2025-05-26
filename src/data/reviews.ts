@@ -14,100 +14,100 @@ export const reviews: Review[] = [
     id: "rev1",
     workspaceId: "ws1",
     userId: "user1",
-    userName: "Alex Johnson",
+    userName: "Alejandro Jiménez",
     userAvatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
     rating: 5,
     date: "2023-03-15",
-    content: "Fantastic coworking space! The WiFi is lightning fast, and the coffee is delicious. I love the quiet areas for focused work, and the community events have helped me make valuable connections. Highly recommend for freelancers and remote workers."
+    content: "¡Fantástico espacio de coworking! El WiFi es súper rápido y el café es delicioso. Me encantan las áreas silenciosas para trabajo enfocado, y los eventos comunitarios me han ayudado a hacer conexiones valiosas. Altamente recomendado para freelancers y trabajadores remotos."
   },
   {
     id: "rev2",
     workspaceId: "ws1",
     userId: "user2",
-    userName: "Sam Rodriguez",
+    userName: "Samuel Rodríguez",
     userAvatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg",
     rating: 4,
     date: "2023-02-28",
-    content: "Great amenities and excellent location. The staff is friendly and helpful. The only downside is that it can get a bit crowded during peak hours, but overall it's a fantastic place to work."
+    content: "Excelentes comodidades y ubicación perfecta. El personal es amable y servicial. El único inconveniente es que puede estar un poco lleno en horas pico, pero en general es un lugar fantástico para trabajar."
   },
   {
     id: "rev3",
     workspaceId: "ws1",
     userId: "user3",
-    userName: "Jamie Smith",
+    userName: "Jimena Sánchez",
     userAvatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg",
     rating: 5,
     date: "2023-04-02",
-    content: "This is my go-to workspace in the city. The environment is perfect for productivity, and I love the ergonomic chairs. The meeting rooms are well-equipped, and booking is hassle-free."
+    content: "Este es mi espacio de trabajo favorito en la ciudad. El ambiente es perfecto para la productividad, y me encantan las sillas ergonómicas. Las salas de reuniones están bien equipadas y la reserva es sin complicaciones."
   },
   {
     id: "rev4",
     workspaceId: "ws2",
     userId: "user4",
-    userName: "Taylor Wong",
+    userName: "Tatiana Wong",
     userAvatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
     rating: 4,
     date: "2023-03-10",
-    content: "Brew & Work has the perfect balance of cafe ambiance and workspace functionality. Their specialty coffee is amazing, and the WiFi is reliable. It can get a bit noisy during lunch hours, but they have quiet corners if you need focus."
+    content: "Café & Trabajo tiene el equilibrio perfecto entre ambiente de cafetería y funcionalidad de espacio de trabajo. Su café especial es increíble y el WiFi es confiable. Puede estar un poco ruidoso durante la hora del almuerzo, pero tienen rincones silenciosos si necesitas concentrarte."
   },
   {
     id: "rev5",
     workspaceId: "ws2",
     userId: "user5",
-    userName: "Riley Martinez",
+    userName: "Ricardo Martínez",
     userAvatar: "https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg",
     rating: 5,
     date: "2023-04-05",
-    content: "My favorite spot to work remotely! The atmosphere is relaxed but professional, and they don't mind if you stay for hours. The staff remembers regular customers, which adds a nice personal touch."
+    content: "¡Mi lugar favorito para trabajar remotamente! El ambiente es relajado pero profesional, y no les molesta si te quedas por horas. El personal recuerda a los clientes frecuentes, lo que añade un toque personal agradable."
   },
   {
     id: "rev6",
     workspaceId: "ws3",
     userId: "user6",
-    userName: "Jordan Patel",
+    userName: "Jorge Patiño",
     userAvatar: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
     rating: 5,
     date: "2023-03-22",
-    content: "Innovation Hub is a game-changer for tech professionals. The networking opportunities are invaluable, and the workspace is designed with tech needs in mind. The 24/7 access is perfect for my irregular schedule."
+    content: "Hub de Innovación es revolucionario para profesionales tecnológicos. Las oportunidades de networking son invaluables, y el espacio está diseñado pensando en las necesidades tecnológicas. El acceso 24/7 es perfecto para mi horario irregular."
   },
   {
     id: "rev7",
     workspaceId: "ws3",
     userId: "user7",
-    userName: "Casey Nguyen",
+    userName: "Carlos Núñez",
     userAvatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
     rating: 4,
     date: "2023-02-18",
-    content: "Excellent facilities and a great community of tech entrepreneurs. The events and workshops add a lot of value to the membership. It's a bit pricey, but worth it for the amenities and networking."
+    content: "Excelentes instalaciones y una gran comunidad de emprendedores tecnológicos. Los eventos y talleres añaden mucho valor a la membresía. Es un poco costoso, pero vale la pena por las comodidades y el networking."
   },
   {
     id: "rev8",
     workspaceId: "ws4",
     userId: "user8",
-    userName: "Morgan Lee",
+    userName: "María López",
     userAvatar: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     rating: 4,
     date: "2023-03-30",
-    content: "The library workspace is perfect for focused study sessions. It's quiet, clean, and free! The only improvement could be extended hours on weekends. I appreciate the meeting rooms for group projects."
+    content: "El espacio de trabajo de la biblioteca es perfecto para sesiones de estudio enfocadas. Es silencioso, limpio y ¡gratis! La única mejora podría ser horarios extendidos los fines de semana. Aprecio las salas de reuniones para proyectos grupales."
   },
   {
     id: "rev9",
     workspaceId: "ws5",
     userId: "user9",
-    userName: "Avery Thompson",
+    userName: "Ana Thompson",
     userAvatar: "https://images.pexels.com/photos/3785424/pexels-photo-3785424.jpeg",
     rating: 5,
     date: "2023-04-08",
-    content: "Urban Loft's industrial design is so inspiring for creative work. The community is diverse and friendly, and the events are always interesting. I've made great connections here that have led to collaborative projects."
+    content: "El diseño industrial de Urban Loft es tan inspirador para el trabajo creativo. La comunidad es diversa y amigable, y los eventos son siempre interesantes. He hecho grandes conexiones aquí que han llevado a proyectos colaborativos."
   },
   {
     id: "rev10",
     workspaceId: "ws6",
     userId: "user10",
-    userName: "Dylan Garcia",
+    userName: "Diego García",
     userAvatar: "https://images.pexels.com/photos/1080213/pexels-photo-1080213.jpeg",
     rating: 5,
     date: "2023-03-25",
-    content: "Serenity lives up to its name! It's the perfect balance of cafe and workspace. The food is healthy and delicious, and the atmosphere helps me focus. I love that they've created different zones for different work styles."
+    content: "¡Serenity cumple con su nombre! Es el equilibrio perfecto entre cafetería y espacio de trabajo. La comida es saludable y deliciosa, y el ambiente me ayuda a concentrarme. Me encanta que han creado diferentes zonas para diferentes estilos de trabajo."
   }
 ];

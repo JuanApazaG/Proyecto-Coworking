@@ -44,8 +44,8 @@ const SearchPage: React.FC = () => {
             {/* View mode toggle and result count */}
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h1 className="text-2xl font-bold">Workspaces</h1>
-                <p className="text-gray-600">{workspaces.length} results found</p>
+                <h1 className="text-2xl font-bold">Espacios de Trabajo</h1>
+                <p className="text-gray-600">{workspaces.length} resultados encontrados</p>
               </div>
               
               <div className="flex items-center space-x-2">
@@ -66,7 +66,7 @@ const SearchPage: React.FC = () => {
                         : 'bg-white text-gray-700'
                     }`}
                     onClick={() => setViewMode('list')}
-                    aria-label="List view"
+                    aria-label="Vista de lista"
                   >
                     <MenuSquare size={20} />
                   </button>
@@ -77,18 +77,18 @@ const SearchPage: React.FC = () => {
                         : 'bg-white text-gray-700'
                     }`}
                     onClick={() => setViewMode('map')}
-                    aria-label="Map view"
+                    aria-label="Vista de mapa"
                   >
                     <Map size={20} />
                   </button>
                 </div>
                 
-                {/* Sort options (placeholder) */}
+                {/* Sort options */}
                 <select className="p-2 border border-gray-300 rounded-lg text-gray-700 bg-white">
-                  <option value="relevance">Sort by: Relevance</option>
-                  <option value="price_low">Price: Low to High</option>
-                  <option value="price_high">Price: High to Low</option>
-                  <option value="rating">Highest Rated</option>
+                  <option value="relevance">Ordenar por: Relevancia</option>
+                  <option value="price_low">Precio: Menor a Mayor</option>
+                  <option value="price_high">Precio: Mayor a Menor</option>
+                  <option value="rating">Mejor Valorados</option>
                 </select>
               </div>
             </div>
@@ -117,7 +117,7 @@ const SearchPage: React.FC = () => {
                         href={`/workspace/${selectedWorkspace}`} 
                         className="btn btn-primary btn-sm"
                       >
-                        View Details
+                        Ver Detalles
                       </a>
                     </div>
                   </div>

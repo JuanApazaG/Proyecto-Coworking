@@ -49,15 +49,15 @@ export const workspaces: Workspace[] = [
     id: "ws1",
     name: "CoWork Central",
     type: "coworking",
-    description: "CoWork Central is a modern coworking space designed for productivity and networking. With high-speed internet, comfortable workstations, and plenty of natural light, it's the perfect place for freelancers and remote workers. The space features both open areas for collaboration and private rooms for focused work or meetings. Complimentary coffee and snacks are provided throughout the day, and members have 24/7 access to the facility.",
-    shortDescription: "A modern coworking space with flexible seating and premium amenities in downtown.",
+    description: "CoWork Central es un espacio de coworking moderno diseñado para la productividad y el networking. Con internet de alta velocidad, estaciones de trabajo cómodas y mucha luz natural, es el lugar perfecto para freelancers y trabajadores remotos. El espacio cuenta con áreas abiertas para colaboración y salas privadas para trabajo enfocado o reuniones. Se proporciona café y snacks gratuitos durante todo el día, y los miembros tienen acceso 24/7 a las instalaciones.",
+    shortDescription: "Un espacio de coworking moderno con asientos flexibles y comodidades premium en el centro.",
     location: {
-      address: "123 Main Street",
-      city: "San Francisco",
-      state: "CA",
-      country: "USA",
-      lat: 37.7749,
-      lng: -122.4194
+      address: "123 Calle Principal",
+      city: "La Paz",
+      state: "La Paz",
+      country: "Bolivia",
+      lat: -16.4897,
+      lng: -68.1193
     },
     price: {
       hourly: 10,
@@ -93,30 +93,30 @@ export const workspaces: Workspace[] = [
       sunday: "10:00 - 16:00"
     },
     amenities: [
-      "High-speed WiFi", 
-      "Standing desks", 
-      "Ergonomic chairs", 
-      "Meeting rooms", 
-      "Phone booths", 
-      "Kitchen", 
-      "Free coffee & tea", 
-      "Printing services"
+      "WiFi de alta velocidad", 
+      "Escritorios de pie", 
+      "Sillas ergonómicas", 
+      "Salas de reuniones", 
+      "Cabinas telefónicas", 
+      "Cocina", 
+      "Café y té gratis", 
+      "Servicios de impresión"
     ],
     popular: true
   },
   {
     id: "ws2",
-    name: "Brew & Work Cafe",
+    name: "Café & Trabajo",
     type: "cafe",
-    description: "Brew & Work is a specialty coffee shop that caters to digital nomads and remote workers. With a quiet atmosphere, reliable WiFi, and plenty of power outlets, it's designed for productivity while enjoying great coffee. The cafe offers a variety of seating options, from communal tables to cozy corners with comfortable chairs. They serve specialty coffee, teas, and a selection of light meals and snacks.",
-    shortDescription: "A quiet cafe with fast WiFi, great coffee, and workspace-friendly seating.",
+    description: "Café & Trabajo es una cafetería especializada que atiende a nómadas digitales y trabajadores remotos. Con un ambiente tranquilo, WiFi confiable y muchos enchufes, está diseñado para la productividad mientras se disfruta de un excelente café. La cafetería ofrece varias opciones de asientos, desde mesas comunales hasta rincones acogedores con sillas cómodas. Sirven café especial, tés y una selección de comidas ligeras y snacks.",
+    shortDescription: "Una cafetería tranquila con WiFi rápido, buen café y asientos aptos para trabajar.",
     location: {
-      address: "456 Oak Avenue",
-      city: "Portland",
-      state: "OR",
-      country: "USA",
-      lat: 45.5152,
-      lng: -122.6784
+      address: "456 Avenida Roboré",
+      city: "Santa Cruz",
+      state: "Santa Cruz",
+      country: "Bolivia",
+      lat: -17.7833,
+      lng: -63.1821
     },
     price: {
       hourly: 5,
@@ -151,28 +151,28 @@ export const workspaces: Workspace[] = [
       sunday: "08:00 - 18:00"
     },
     amenities: [
-      "Free WiFi", 
-      "Power outlets", 
-      "Specialty coffee", 
-      "Pastries & light meals", 
-      "Quiet zones", 
-      "Outdoor seating"
+      "WiFi gratis", 
+      "Enchufes", 
+      "Café especial", 
+      "Pasteles y comidas ligeras", 
+      "Zonas silenciosas", 
+      "Asientos al aire libre"
     ],
     popular: true
   },
   {
     id: "ws3",
-    name: "Innovation Hub",
+    name: "Hub de Innovación",
     type: "coworking",
-    description: "Innovation Hub is a premium coworking space focused on technology startups and entrepreneurs. The space features modern design, cutting-edge technology, and a vibrant community of like-minded professionals. With dedicated desks, private offices, and meeting spaces equipped with the latest AV technology, it offers everything tech professionals need. The hub regularly hosts networking events, workshops, and mentoring sessions.",
-    shortDescription: "Tech-focused coworking space with modern amenities and a vibrant community.",
+    description: "Hub de Innovación es un espacio de coworking premium enfocado en startups tecnológicas y emprendedores. El espacio cuenta con diseño moderno, tecnología de vanguardia y una vibrante comunidad de profesionales con ideas afines. Con escritorios dedicados, oficinas privadas y espacios de reunión equipados con la última tecnología audiovisual, ofrece todo lo que los profesionales tecnológicos necesitan. El hub organiza regularmente eventos de networking, talleres y sesiones de mentoría.",
+    shortDescription: "Espacio de coworking enfocado en tecnología con comodidades modernas y una comunidad vibrante.",
     location: {
-      address: "789 Tech Blvd",
-      city: "Austin",
-      state: "TX",
-      country: "USA",
-      lat: 30.2672,
-      lng: -97.7431
+      address: "789 Avenida Tecnológica",
+      city: "Cochabamba",
+      state: "Cochabamba",
+      country: "Bolivia",
+      lat: -17.3895,
+      lng: -66.1568
     },
     price: {
       hourly: 12,
@@ -208,30 +208,30 @@ export const workspaces: Workspace[] = [
       sunday: "00:00 - 24:00"
     },
     amenities: [
-      "High-speed fiber internet", 
-      "Ergonomic workstations", 
-      "Private phone booths", 
-      "Conference rooms with AV", 
-      "24/7 secure access", 
-      "Startup events", 
-      "Mentoring sessions", 
-      "Tech lounge"
+      "Internet de fibra de alta velocidad", 
+      "Estaciones de trabajo ergonómicas", 
+      "Cabinas telefónicas privadas", 
+      "Salas de conferencias con AV", 
+      "Acceso seguro 24/7", 
+      "Eventos para startups", 
+      "Sesiones de mentoría", 
+      "Sala de tecnología"
     ],
     popular: true
   },
   {
     id: "ws4",
-    name: "Metro Library Workspace",
+    name: "Espacio de Trabajo Biblioteca Metro",
     type: "library",
-    description: "Metro Library Workspace is a dedicated area within the city's central library designed specifically for quiet, focused work. It offers comfortable seating, large tables, and a peaceful atmosphere for studying, reading, or working. The workspace provides free high-speed WiFi, power outlets at every table, and access to the library's vast resources. There are also small meeting rooms available for reservation.",
-    shortDescription: "Quiet, dedicated workspace within the central library with free WiFi.",
+    description: "El Espacio de Trabajo Biblioteca Metro es un área dedicada dentro de la biblioteca central de la ciudad diseñada específicamente para trabajo tranquilo y enfocado. Ofrece asientos cómodos, mesas grandes y un ambiente pacífico para estudiar, leer o trabajar. El espacio de trabajo proporciona WiFi de alta velocidad gratuito, enchufes en cada mesa y acceso a los vastos recursos de la biblioteca. También hay pequeñas salas de reuniones disponibles para reserva.",
+    shortDescription: "Espacio de trabajo tranquilo y dedicado dentro de la biblioteca central con WiFi gratis.",
     location: {
-      address: "101 Library Street",
-      city: "Chicago",
-      state: "IL",
-      country: "USA",
-      lat: 41.8781,
-      lng: -87.6298
+      address: "101 Calle Biblioteca",
+      city: "Sucre",
+      state: "Chuquisaca",
+      country: "Bolivia",
+      lat: -19.0473,
+      lng: -65.2596
     },
     price: {
       hourly: 0,
@@ -257,23 +257,21 @@ export const workspaces: Workspace[] = [
       accessibility: true
     },
     hours: {
-      monday: "09:00 - 20:00",
-      tuesday: "09:00 - 20:00",
-      wednesday: "09:00 - 20:00",
-      thursday: "09:00 - 20:00",
+      monday: "09:00 - 18:00",
+      tuesday: "09:00 - 18:00",
+      wednesday: "09:00 - 18:00",
+      thursday: "09:00 - 18:00",
       friday: "09:00 - 18:00",
-      saturday: "10:00 - 18:00",
-      sunday: "12:00 - 17:00"
+      saturday: "10:00 - 16:00",
+      sunday: "Cerrado"
     },
     amenities: [
-      "Free WiFi", 
-      "Power outlets", 
-      "Study carrels", 
-      "Large tables", 
-      "Quiet environment", 
-      "Library resources", 
-      "Research assistance", 
-      "Printing services"
+      "WiFi gratis", 
+      "Enchufes en cada mesa", 
+      "Acceso a recursos de la biblioteca", 
+      "Salas de estudio", 
+      "Salas de reuniones", 
+      "Áreas silenciosas"
     ],
     popular: false
   },
@@ -281,8 +279,8 @@ export const workspaces: Workspace[] = [
     id: "ws5",
     name: "Urban Loft Workspace",
     type: "coworking",
-    description: "Urban Loft is a trendy, industrial-style coworking space in a converted warehouse. With soaring ceilings, exposed brick, and large windows, it offers an inspiring environment for creatives and entrepreneurs. The space features hot desks, dedicated desks, private offices, and multiple meeting rooms. Members enjoy amenities like craft coffee, a wellness room, shower facilities, and bike storage. The vibrant community hosts regular social events and professional workshops.",
-    shortDescription: "Trendy industrial-style coworking space in a converted warehouse with creative vibes.",
+    description: "Urban Loft es un espacio de coworking de estilo industrial en un almacén reconvertido. Con techos altos, ladrillos expuestos y grandes ventanales, ofrece un ambiente inspirador para creativos y emprendedores. El espacio cuenta con escritorios compartidos, escritorios dedicados, oficinas privadas y múltiples salas de reuniones. Los miembros disfrutan de comodidades como café artesanal, sala de bienestar, duchas y almacenamiento para bicicletas. La vibrante comunidad organiza regularmente eventos sociales y talleres profesionales.",
+    shortDescription: "Espacio de coworking de estilo industrial en un almacén reconvertido con ambiente creativo.",
     location: {
       address: "222 Warehouse District",
       city: "New York",
@@ -341,8 +339,8 @@ export const workspaces: Workspace[] = [
     id: "ws6",
     name: "Serenity Cafe & Workspace",
     type: "cafe",
-    description: "Serenity is a peaceful cafe designed with remote workers in mind. The space is divided into different zones for various work styles - from communal tables for collaboration to secluded nooks for focused work. The cafe offers specialty coffee, organic teas, and nutritious food options. With reliable WiFi, plenty of outlets, and a no-rush policy, workers are welcome to stay for hours. The calm atmosphere and gentle background music create an ideal environment for concentration.",
-    shortDescription: "Zen-inspired cafe with workspace zones, healthy food, and a calm atmosphere.",
+    description: "Serenity es una cafetería tranquila diseñada pensando en trabajadores remotos. El espacio está dividido en diferentes zonas para varios estilos de trabajo, desde mesas comunales para colaboración hasta rincones aislados para trabajo enfocado. La cafetería ofrece café especial, tés orgánicos y opciones de comida nutritiva. Con WiFi confiable, muchos enchufes y una política sin prisas, los trabajadores son bienvenidos a quedarse por horas. La atmósfera tranquila y la música suave de fondo crean un ambiente ideal para la concentración.",
+    shortDescription: "Cafetería inspirada en el zen con zonas de trabajo, comida saludable y ambiente tranquilo.",
     location: {
       address: "333 Calm Street",
       city: "Seattle",

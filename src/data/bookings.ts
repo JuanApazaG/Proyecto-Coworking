@@ -7,7 +7,7 @@ export interface Booking {
   date: string;
   startTime: string;
   endTime: string;
-  status: 'upcoming' | 'completed' | 'canceled';
+  status: 'próximo' | 'completado' | 'cancelado';
   totalPrice: number;
 }
 
@@ -21,31 +21,31 @@ export const bookings: Booking[] = [
     date: "2023-05-10",
     startTime: "09:00",
     endTime: "17:00",
-    status: "upcoming",
+    status: "próximo",
     totalPrice: 45
   },
   {
     id: "book2",
     userId: "user1",
     workspaceId: "ws3",
-    workspaceName: "Innovation Hub",
+    workspaceName: "Hub de Innovación",
     workspaceImage: "https://images.pexels.com/photos/3182833/pexels-photo-3182833.jpeg",
     date: "2023-05-15",
     startTime: "10:00",
     endTime: "18:00",
-    status: "upcoming",
+    status: "próximo",
     totalPrice: 50
   },
   {
     id: "book3",
     userId: "user1",
     workspaceId: "ws2",
-    workspaceName: "Brew & Work Cafe",
+    workspaceName: "Café & Trabajo",
     workspaceImage: "https://images.pexels.com/photos/1813466/pexels-photo-1813466.jpeg",
     date: "2023-04-28",
     startTime: "08:00",
     endTime: "14:00",
-    status: "completed",
+    status: "completado",
     totalPrice: 30
   },
   {
@@ -57,7 +57,7 @@ export const bookings: Booking[] = [
     date: "2023-04-20",
     startTime: "09:00",
     endTime: "17:00",
-    status: "completed",
+    status: "completado",
     totalPrice: 60
   },
   {
@@ -69,7 +69,7 @@ export const bookings: Booking[] = [
     date: "2023-04-15",
     startTime: "10:00",
     endTime: "16:00",
-    status: "completed",
+    status: "completado",
     totalPrice: 24
   }
 ];

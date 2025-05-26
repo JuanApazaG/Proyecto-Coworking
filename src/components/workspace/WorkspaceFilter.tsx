@@ -78,7 +78,7 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
         <Search size={20} className="text-gray-500 mr-2" />
         <input
           type="text"
-          placeholder="Search by location, name, or keyword"
+          placeholder="Buscar por ubicación, nombre o palabra clave"
           className="bg-transparent border-none outline-none w-full text-gray-800 placeholder-gray-500"
         />
       </div>
@@ -87,14 +87,14 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">
           <Filter size={18} className="text-primary-900 mr-2" />
-          <h3 className="font-medium">Filters</h3>
+          <h3 className="font-medium">Filtros</h3>
         </div>
         {onToggleCollapse && (
           <button 
             onClick={onToggleCollapse}
             className="text-sm text-primary-700 hover:text-primary-900"
           >
-            {isCollapsed ? 'Show Filters' : 'Hide Filters'}
+            {isCollapsed ? 'Mostrar Filtros' : 'Ocultar Filtros'}
           </button>
         )}
       </div>
@@ -104,7 +104,7 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
         <div className="space-y-6">
           {/* Amenities section */}
           <div>
-            <h4 className="font-medium mb-3 text-gray-800">Amenities</h4>
+            <h4 className="font-medium mb-3 text-gray-800">Comodidades</h4>
             <div className="grid grid-cols-2 gap-3">
               <button
                 className={`flex items-center px-3 py-2 rounded-lg text-sm border transition-colors ${
@@ -115,7 +115,7 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
                 onClick={() => handleToggleFilter('wifi', !filters.wifi)}
               >
                 <Wifi size={16} className="mr-2" />
-                Fast WiFi
+                WiFi Rápido
               </button>
               
               <button
@@ -127,7 +127,7 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
                 onClick={() => handleToggleFilter('powerOutlets', !filters.powerOutlets)}
               >
                 <Power size={16} className="mr-2" />
-                Power Outlets
+                Enchufes
               </button>
               
               <button
@@ -139,7 +139,7 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
                 onClick={() => handleToggleFilter('coffee', !filters.coffee)}
               >
                 <Coffee size={16} className="mr-2" />
-                Coffee
+                Café
               </button>
               
               <button
@@ -151,17 +151,17 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
                 onClick={() => handleToggleFilter('quiet', !filters.quiet)}
               >
                 <Volume2 size={16} className="mr-2" />
-                Quiet Environment
+                Ambiente Silencioso
               </button>
             </div>
           </div>
           
           {/* Price range slider */}
           <div>
-            <h4 className="font-medium mb-3 text-gray-800">Price Range</h4>
+            <h4 className="font-medium mb-3 text-gray-800">Rango de Precio</h4>
             <div className="mb-1 flex items-center">
               <DollarSign size={16} className="text-gray-500 mr-1" />
-              <span className="text-sm text-gray-700">Up to ${filters.priceRange[1]}/hour</span>
+              <span className="text-sm text-gray-700">Hasta Bs. {filters.priceRange[1]}/hora</span>
             </div>
             <input
               type="range"
@@ -172,14 +172,14 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
               className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
             />
             <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span>$0</span>
-              <span>$50+</span>
+              <span>Bs. 0</span>
+              <span>Bs. 50+</span>
             </div>
           </div>
           
           {/* Workspace type */}
           <div>
-            <h4 className="font-medium mb-3 text-gray-800">Workspace Type</h4>
+            <h4 className="font-medium mb-3 text-gray-800">Tipo de Espacio</h4>
             <div className="grid grid-cols-2 gap-3">
               {['coworking', 'cafe', 'library', 'hotel'].map((type) => (
                 <button
@@ -191,7 +191,10 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
                   }`}
                   onClick={() => handleToggleFilter('workspaceType', type)}
                 >
-                  {type}
+                  {type === 'coworking' ? 'Coworking' :
+                   type === 'cafe' ? 'Cafetería' :
+                   type === 'library' ? 'Biblioteca' :
+                   'Hotel'}
                 </button>
               ))}
             </div>
@@ -199,18 +202,18 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
           
           {/* Date picker placeholder (would be integrated with a date picker library in a real implementation) */}
           <div>
-            <h4 className="font-medium mb-3 text-gray-800">Date</h4>
+            <h4 className="font-medium mb-3 text-gray-800">Fecha</h4>
             <button
               className="flex items-center px-3 py-2 rounded-lg text-sm border border-gray-200 text-gray-700 hover:bg-gray-50 w-full"
             >
               <Calendar size={16} className="mr-2" />
-              <span>Select Date</span>
+              <span>Seleccionar Fecha</span>
             </button>
           </div>
           
           {/* Apply filters button */}
           <button className="btn btn-primary w-full">
-            Apply Filters
+            Aplicar Filtros
           </button>
         </div>
       )}

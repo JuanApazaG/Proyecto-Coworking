@@ -28,11 +28,9 @@ const Navbar: React.FC = () => {
   };
 
   const navLinks = [
-    { name: 'Home', path: '/', icon: <MapPin size={18} /> },
-    { name: 'Search', path: '/search', icon: <Search size={18} /> },
-    { name: 'Bookings', path: '/profile', icon: <Calendar size={18} /> },
-    { name: 'Profile', path: '/profile', icon: <User size={18} /> },
-    { name: 'Dashboard', path: '/dashboard', icon: <Briefcase size={18} /> },
+    { name: 'Inicio', path: '/', icon: <MapPin size={18} /> },
+    { name: 'Buscar', path: '/search', icon: <Search size={18} /> },
+    { name: 'Panel', path: '/dashboard', icon: <Briefcase size={18} /> },
   ];
 
   const isActive = (path: string) => {
@@ -50,7 +48,7 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <Logo />
-            <span className="ml-2 text-xl font-bold text-primary-900">WorkSpotter</span>
+            <span className="ml-2 text-xl font-bold text-primary-900">SumaqHub</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -73,15 +71,15 @@ const Navbar: React.FC = () => {
 
           {/* Action Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="btn btn-secondary btn-sm">Sign In</button>
-            <button className="btn btn-primary btn-sm">Sign Up</button>
+            <button className="btn btn-secondary btn-sm">Iniciar Sesión</button>
+            <button className="btn btn-primary btn-sm">Registrarse</button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100"
             onClick={toggleMenu}
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -108,8 +106,8 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
             <div className="pt-4 flex flex-col space-y-3">
-              <button className="btn btn-secondary">Sign In</button>
-              <button className="btn btn-primary">Sign Up</button>
+              <button className="btn btn-secondary">Iniciar Sesión</button>
+              <button className="btn btn-primary">Registrarse</button>
             </div>
           </nav>
         </div>

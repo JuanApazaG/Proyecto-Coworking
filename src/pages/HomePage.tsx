@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.pexels.com/photos/7172089/pexels-photo-7172089.jpeg" 
+            src="https://images.pexels.com/photos/887723/pexels-photo-887723.jpeg" 
             alt="Workspace" 
             className="w-full h-full object-cover"
           />
@@ -26,11 +26,11 @@ const HomePage: React.FC = () => {
         <div className="container-custom relative z-10 pt-20">
           <div className="max-w-2xl text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Find Your Ideal Workspace
+              Encuentra tu Espacio de Trabajo Ideal
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white/90">
-              Discover coworking spaces, cafes, and libraries perfect for 
-              digital nomads, freelancers, and students.
+              Descubre espacios de coworking, cafeterías y bibliotecas perfectas para 
+              nómadas digitales, freelancers y estudiantes.
             </p>
             
             {/* Search Box */}
@@ -39,25 +39,25 @@ const HomePage: React.FC = () => {
                 <MapPin size={20} className="text-gray-500 mr-2" />
                 <input
                   type="text"
-                  placeholder="Where do you want to work?"
+                  placeholder="¿Dónde quieres trabajar?"
                   className="bg-transparent border-none outline-none w-full text-gray-800 placeholder-gray-500"
                 />
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div>
-                  <label className="text-xs text-gray-500 mb-1 block">Workspace Type</label>
+                  <label className="text-xs text-gray-500 mb-1 block">Tipo de Espacio</label>
                   <select className="w-full p-2 border border-gray-300 rounded-lg text-gray-800">
-                    <option>Any Type</option>
+                    <option>Cualquier Tipo</option>
                     <option>Coworking</option>
-                    <option>Cafe</option>
-                    <option>Library</option>
-                    <option>Hotel Lobby</option>
+                    <option>Cafetería</option>
+                    <option>Biblioteca</option>
+                    <option>Lobby de Hotel</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label className="text-xs text-gray-500 mb-1 block">Date</label>
+                  <label className="text-xs text-gray-500 mb-1 block">Fecha</label>
                   <input 
                     type="date" 
                     className="w-full p-2 border border-gray-300 rounded-lg text-gray-800"
@@ -65,13 +65,13 @@ const HomePage: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label className="text-xs text-gray-500 mb-1 block">Price Range</label>
+                  <label className="text-xs text-gray-500 mb-1 block">Rango de Precio</label>
                   <select className="w-full p-2 border border-gray-300 rounded-lg text-gray-800">
-                    <option>Any Price</option>
-                    <option>$0-$5/hour</option>
-                    <option>$5-$15/hour</option>
-                    <option>$15-$30/hour</option>
-                    <option>$30+/hour</option>
+                    <option>Cualquier Precio</option>
+                    <option>Bs. 0-5/hora</option>
+                    <option>Bs. 5-15/hora</option>
+                    <option>Bs. 15-30/hora</option>
+                    <option>Bs. 30+/hora</option>
                   </select>
                 </div>
               </div>
@@ -81,7 +81,7 @@ const HomePage: React.FC = () => {
                 className="btn btn-primary w-full flex items-center justify-center"
               >
                 <Search size={18} className="mr-2" />
-                Find Workspaces
+                Buscar Espacios
               </Link>
             </div>
             
@@ -90,25 +90,25 @@ const HomePage: React.FC = () => {
                 to="/search?type=coworking" 
                 className="badge bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-full text-sm transition-colors"
               >
-                Coworking Spaces
+                Espacios Coworking
               </Link>
               <Link 
                 to="/search?type=cafe" 
                 className="badge bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-full text-sm transition-colors"
               >
-                Cafes
+                Cafeterías
               </Link>
               <Link 
                 to="/search?type=library" 
                 className="badge bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-full text-sm transition-colors"
               >
-                Libraries
+                Bibliotecas
               </Link>
               <Link 
                 to="/search?type=hotel" 
                 className="badge bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-full text-sm transition-colors"
               >
-                Hotel Lobbies
+                Lobbies de Hoteles
               </Link>
             </div>
           </div>
@@ -120,15 +120,15 @@ const HomePage: React.FC = () => {
         <div className="container-custom">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
             <div>
-              <h2 className="text-3xl font-bold mb-2">Featured Workspaces</h2>
-              <p className="text-gray-600">Discover top-rated places to work and collaborate</p>
+              <h2 className="text-3xl font-bold mb-2">Espacios Destacados</h2>
+              <p className="text-gray-600">Descubre los lugares mejor valorados para trabajar y colaborar</p>
             </div>
             
             <Link 
               to="/search" 
               className="flex items-center text-primary-900 font-medium hover:text-primary-700 transition-colors mt-4 md:mt-0"
             >
-              View All
+              Ver Todos
               <ArrowRight size={18} className="ml-1" />
             </Link>
           </div>
@@ -145,9 +145,9 @@ const HomePage: React.FC = () => {
       <section className="py-16 bg-white">
         <div className="container-custom">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-2">Find Workspaces Near You</h2>
+            <h2 className="text-3xl font-bold mb-2">Encuentra Espacios Cerca de Ti</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Explore available workspaces in your area and discover the perfect environment for your work style
+              Explora los espacios disponibles en tu área y descubre el entorno perfecto para tu estilo de trabajo
             </p>
           </div>
           
@@ -157,7 +157,7 @@ const HomePage: React.FC = () => {
           
           <div className="mt-8 text-center">
             <Link to="/search" className="btn btn-primary">
-              Explore Map View
+              Explorar Vista de Mapa
             </Link>
           </div>
         </div>
@@ -167,9 +167,9 @@ const HomePage: React.FC = () => {
       <section className="py-16 bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-2">How It Works</h2>
+            <h2 className="text-3xl font-bold mb-2">Cómo Funciona</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Find and book your perfect workspace in three simple steps
+              Encuentra y reserva tu espacio de trabajo perfecto en tres simples pasos
             </p>
           </div>
           
@@ -179,9 +179,9 @@ const HomePage: React.FC = () => {
               <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Search size={24} className="text-primary-900" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Search</h3>
+              <h3 className="text-xl font-semibold mb-2">Buscar</h3>
               <p className="text-gray-600">
-                Find workspaces based on your location, preferences, and requirements
+                Encuentra espacios basados en tu ubicación, preferencias y requisitos
               </p>
             </div>
             
@@ -190,9 +190,9 @@ const HomePage: React.FC = () => {
               <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MapPin size={24} className="text-primary-900" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Explore</h3>
+              <h3 className="text-xl font-semibold mb-2">Explorar</h3>
               <p className="text-gray-600">
-                View workspace details, amenities, reviews, and availability
+                Visualiza detalles del espacio, comodidades, reseñas y disponibilidad
               </p>
             </div>
             
@@ -201,9 +201,9 @@ const HomePage: React.FC = () => {
               <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Calendar size={24} className="text-primary-900" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Book</h3>
+              <h3 className="text-xl font-semibold mb-2">Reservar</h3>
               <p className="text-gray-600">
-                Reserve your workspace for the hours or days you need it
+                Reserva tu espacio para las horas o días que lo necesites
               </p>
             </div>
           </div>
@@ -214,16 +214,16 @@ const HomePage: React.FC = () => {
       <section className="py-16 bg-primary-900 text-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to find your perfect workspace?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#fff]">¿Listo para encontrar tu espacio de trabajo perfecto?</h2>
             <p className="text-xl text-white/80 mb-8">
-              Join thousands of digital nomads, freelancers, and students who have found their ideal work environment.
+              Únete a miles de nómadas digitales, freelancers y estudiantes que han encontrado su entorno de trabajo ideal.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/search" className="btn btn-primary bg-white text-primary-900 hover:bg-gray-100">
-                Find Workspace
+                Encontrar Espacio
               </Link>
-              <Link to="/dashboard" className="btn btn-secondary border-white text-white hover:bg-primary-800">
-                List Your Space
+              <Link to="/dashboard" className="btn btn-secondary border-white text-[rgb(38_68_153_/_var(--tw-bg-opacity))] hover:bg-primary-800">
+                Listar tu Espacio
               </Link>
             </div>
           </div>

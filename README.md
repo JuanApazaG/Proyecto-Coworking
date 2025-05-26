@@ -10,6 +10,7 @@ Este es un proyecto de demostración desarrollado como parte del programa **Tech
 - Juan Apaza G.
 - Fernanda Flores
 - Carlos Collazos (Mentor)
+
 ![Diseño sin título (5)](https://github.com/user-attachments/assets/9896af61-3984-4372-a6ba-761e5c7b59c7)
 
 

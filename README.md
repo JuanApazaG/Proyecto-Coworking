@@ -1,5 +1,6 @@
 # Demo App - Tech Connect
 
+
 Este es un proyecto de demostración desarrollado como parte del programa **TechConnect**, realizado en equipo por dos integrantes. La aplicación fue creada con **Vite**, **React**, **Tailwind CSS** y desplegada con **Firebase**.
 
 > 🚀 Este proyecto es una demo y no está destinado a producción final.
@@ -9,6 +10,7 @@ Este es un proyecto de demostración desarrollado como parte del programa **Tech
 - Juan Apaza G.
 - Fernanda Flores
 - Carlos Collazos (Mentor)
+![20250522_185036](https://github.com/user-attachments/assets/b3afb8c3-b2d3-4a7c-b71f-f8469050547c)
 
 ---
 

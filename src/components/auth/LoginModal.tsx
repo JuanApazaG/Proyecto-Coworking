@@ -24,23 +24,30 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSwitchToRegi
     try {
       await login(email, password);
       onClose(); // Cerrar el modal si el inicio de sesión es exitoso
-    } catch (error: any) {
+    } catch (err: unknown) {
       // Manejar diferentes tipos de errores de Firebase
-      switch (error.code) {
-        case 'auth/invalid-email':
-          setError('El correo electrónico no es válido');
-          break;
-        case 'auth/user-disabled':
-          setError('Esta cuenta ha sido deshabilitada');
-          break;
-        case 'auth/user-not-found':
-          setError('No existe una cuenta con este correo electrónico');
-          break;
-        case 'auth/wrong-password':
-          setError('Contraseña incorrecta');
-          break;
-        default:
-          setError('Error al iniciar sesión. Por favor, intenta de nuevo');
+      if (typeof err === 'object' && err !== null && 'code' in err) {
+        const firebaseError = err as { code: string };
+        switch (firebaseError.code) {
+          case 'auth/invalid-email':
+            setError('El correo electrónico no es válido');
+            break;
+          case 'auth/user-disabled':
+            setError('Esta cuenta ha sido deshabilitada');
+            break;
+          case 'auth/user-not-found':
+            setError('No existe una cuenta con este correo electrónico');
+            break;
+          case 'auth/wrong-password':
+            setError('Contraseña incorrecta');
+            break;
+          default:
+            setError('Error al iniciar sesión: ' + firebaseError.code);
+        }
+      } else if (err instanceof Error) {
+         setError('Error al iniciar sesión: ' + err.message);
+      } else {
+         setError('Error desconocido al iniciar sesión.');
       }
     } finally {
       setIsLoading(false);
@@ -53,9 +60,16 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSwitchToRegi
     try {
       await signInWithGoogle();
       onClose(); // Cerrar el modal si el inicio de sesión es exitoso
-    } catch (error: any) {
+    } catch (err: unknown) {
       // Puedes manejar errores específicos de Google si es necesario
-      setError('Error al iniciar sesión con Google. Por favor, intenta de nuevo.');
+       if (typeof err === 'object' && err !== null && 'message' in err) {
+         const googleError = err as { message: string };
+         setError(`Error de Google: ${googleError.message}`);
+       } else if (err instanceof Error) {
+         setError('Error al iniciar sesión con Google: ' + err.message);
+       } else {
+         setError('Error al iniciar sesión con Google. Por favor, intenta de nuevo.');
+       }
     } finally {
       setIsLoading(false);
     }

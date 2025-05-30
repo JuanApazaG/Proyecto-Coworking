@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom'; // Eliminamos esta importación
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import Logo from '../ui/Logo';
 
@@ -18,6 +18,7 @@ const Footer: React.FC = () => {
               Conectando nómadas digitales, freelancers y estudiantes con espacios de trabajo productivos desde 2025.
             </p>
             <div className="flex space-x-4">
+              {/* Enlaces de redes sociales (dejar como está si ya son '#' o URLs dummy) */}
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
                 <Facebook size={20} />
               </a>
@@ -38,24 +39,28 @@ const Footer: React.FC = () => {
             <h4 className="font-semibold text-lg mb-4">Enlaces Rápidos</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-white transition-colors">
-                  Inicio
-                </Link>
+                {/* Cambiado de Link a a */}
+                <a className="text-gray-400 hover:text-white transition-colors">
+                  Inicio 
+                </a>
               </li>
               <li>
-                <Link to="/search" className="text-gray-400 hover:text-white transition-colors">
-                  Buscar Espacios
-                </Link>
+                {/* Cambiado de Link a a */}
+                <a className="text-gray-400 hover:text-white transition-colors">
+                  Buscar Espacios 
+                </a>
               </li>
               <li>
-                <Link to="/profile" className="text-gray-400 hover:text-white transition-colors">
-                  Mis Reservas
-                </Link>
+                {/* Cambiado de Link a a */}
+                <a className="text-gray-400 hover:text-white transition-colors">
+                  Mis Reservas 
+                </a>
               </li>
               <li>
-                <Link to="/dashboard" className="text-gray-400 hover:text-white transition-colors">
-                  Panel de Control
-                </Link>
+                {/* Cambiado de Link a a */}
+                <a className="text-gray-400 hover:text-white transition-colors">
+                  Panel de Control 
+                </a>
               </li>
             </ul>
           </div>
@@ -65,24 +70,28 @@ const Footer: React.FC = () => {
             <h4 className="font-semibold text-lg mb-4">Tipos de Espacios</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/search?type=coworking" className="text-gray-400 hover:text-white transition-colors">
-                  Espacios de Coworking
-                </Link>
+                {/* Cambiado de Link a a */}
+                <a className="text-gray-400 hover:text-white transition-colors">
+                  Espacios de Coworking 
+                </a>
               </li>
               <li>
-                <Link to="/search?type=cafe" className="text-gray-400 hover:text-white transition-colors">
-                  Cafeterías
-                </Link>
+                {/* Cambiado de Link a a */}
+                <a className="text-gray-400 hover:text-white transition-colors">
+                  Cafeterías 
+                </a>
               </li>
               <li>
-                <Link to="/search?type=library" className="text-gray-400 hover:text-white transition-colors">
+                {/* Cambiado de Link a a */}
+                <a className="text-gray-400 hover:text-white transition-colors">
                   Bibliotecas
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/search?type=hotel" className="text-gray-400 hover:text-white transition-colors">
+                {/* Cambiado de Link a a */}
+                <a className="text-gray-400 hover:text-white transition-colors">
                   Lobbies de Hoteles
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -99,9 +108,10 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <Phone size={18} className="mr-2 text-gray-400" />
-                <a href="tel:+123456789" className="text-gray-400 hover:text-white transition-colors">
-                  +1 (234) 567-890
-                </a>
+                {/* Número de teléfono actualizado */}
+                <span className="text-gray-400">
+                  +591 (78790716)
+                </span>
               </li>
             </ul>
           </div>
@@ -113,15 +123,18 @@ const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} SumaqHub. Todos los derechos reservados.
           </p>
           <div className="flex space-x-6">
-            <Link to="/terms" className="text-gray-500 hover:text-white text-sm transition-colors">
+            {/* Cambiado de Link a a */}
+            <a className="text-gray-500 hover:text-white text-sm transition-colors">
               Términos de Servicio
-            </Link>
-            <Link to="/privacy" className="text-gray-500 hover:text-white text-sm transition-colors">
-              Política de Privacidad
-            </Link>
-            <Link to="/cookies" className="text-gray-500 hover:text-white text-sm transition-colors">
+            </a>
+            {/* Cambiado de Link a a */}
+            <a className="text-gray-500 hover:text-white text-sm transition-colors">
+              Política de Privacidad 
+            </a>
+            {/* Cambiado de Link a a */}
+            <a className="text-gray-500 hover:text-white text-sm transition-colors">
               Política de Cookies
-            </Link>
+            </a>
           </div>
         </div>
       </div>

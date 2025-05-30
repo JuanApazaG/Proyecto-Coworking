@@ -3,6 +3,24 @@ import { X } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { FcGoogle } from 'react-icons/fc';
 
+// Definir un tipo para los errores de Firebase esperados
+interface FirebaseErrorShape {
+  code: string;
+  message: string;
+}
+
+// Función auxiliar para verificar si un error tiene la forma esperada de un error de Firebase
+function isFirebaseErrorShape(error: unknown): error is FirebaseErrorShape {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'code' in error &&
+    typeof (error as { code: unknown }).code === 'string' && // Verificación segura del tipo de code
+    'message' in error &&
+    typeof (error as { message: unknown }).message === 'string' // Verificación segura del tipo de message
+  );
+}
+
 interface RegisterModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -32,22 +50,29 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
     try {
       await register(email, password);
       onClose(); // Cerrar el modal si el registro es exitoso
-    } catch (error: any) {
-      switch (error.code) {
-        case 'auth/email-already-in-use':
-          setError('Este correo electrónico ya está registrado');
-          break;
-        case 'auth/invalid-email':
-          setError('El correo electrónico no es válido');
-          break;
-        case 'auth/operation-not-allowed':
-          setError('El registro con correo electrónico no está habilitado');
-          break;
-        case 'auth/weak-password':
-          setError('La contraseña debe tener al menos 6 caracteres');
-          break;
-        default:
-          setError('Error al registrar. Por favor, intenta de nuevo');
+    } catch (error: unknown) {
+      // Manejar diferentes tipos de errores de Firebase
+      if (isFirebaseErrorShape(error)) { // Usamos la función de verificación
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+            setError('Este correo electrónico ya está registrado');
+            break;
+          case 'auth/invalid-email':
+            setError('El correo electrónico no es válido');
+            break;
+          case 'auth/operation-not-allowed':
+            setError('El registro con correo electrónico no está habilitado');
+            break;
+          case 'auth/weak-password':
+            setError('La contraseña debe tener al menos 6 caracteres');
+            break;
+          default:
+            setError('Error al registrar: ' + error.code); // Ahora error.code es seguro
+        }
+      } else if (error instanceof Error) { // Para otros tipos de errores de JS
+         setError('Error al registrar: ' + error.message);
+      } else {
+         setError('Error desconocido al registrar.');
       }
     } finally {
       setIsLoading(false);
@@ -60,9 +85,15 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
     try {
       await signInWithGoogle();
       onClose(); // Cerrar el modal si el inicio de sesión es exitoso
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Puedes manejar errores específicos de Google si es necesario
-      setError('Error al iniciar sesión con Google. Por favor, intenta de nuevo.');
+       if (isFirebaseErrorShape(error)) { // Usamos la función de verificación
+         setError(`Error de Google: ${error.message}`); // error.message es seguro
+       } else if (error instanceof Error) { // Para otros tipos de errores de JS
+         setError('Error al iniciar sesión con Google: ' + error.message);
+       } else {
+         setError('Error al iniciar sesión con Google. Por favor, intenta de nuevo.');
+       }
     } finally {
       setIsLoading(false);
     }

@@ -1,79 +1,80 @@
-import React, { useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import { workspaces } from '../../data/workspaces';
 
-// Replace with your Mapbox access token
-mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+// Importar el icono de marcador por defecto de Leaflet
+import L from 'leaflet';
+import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
+import iconUrl from 'leaflet/dist/images/marker-icon.png';
+import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
+
+// Configurar los iconos por defecto de Leaflet en React
+// Esto es necesario porque Webpack (usado por Vite/Create-React-App) maneja las URLs de los archivos de forma diferente
+L.Marker.prototype.options.icon = L.icon({
+  iconRetinaUrl,
+  iconUrl,
+  shadowUrl,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  tooltipAnchor: [16, -28],
+  shadowSize: [41, 41]
+});
 
 interface MapComponentProps {
   height?: string;
-  showInfoOnHover?: boolean;
+  showInfoOnHover?: boolean; // Podemos considerar usar tooltips en lugar de popups al hacer hover más adelante si es necesario
   selectedWorkspace?: string;
   onSelectWorkspace?: (workspaceId: string) => void;
 }
 
-const MapComponent: React.FC<MapComponentProps> = ({ 
-  height = 'h-[500px]', 
-  showInfoOnHover = false,
-  selectedWorkspace,
+const MapComponent: React.FC<MapComponentProps> = ({
+  height = 'h-[500px]',
+  // showInfoOnHover = false, // No usado directamente en la implementación básica con popups
+  // selectedWorkspace,
   onSelectWorkspace
 }) => {
-  const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
-
-  useEffect(() => {
-    if (!mapContainer.current) return;
-
-    // Initialize map
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/light-v11',
-      center: [-68.1193, -16.4897], // La Paz coordinates
-      zoom: 12
-    });
-
-    // Add navigation controls
-    map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
-    // Add markers when map loads
-    map.current.on('load', () => {
-      workspaces.forEach(workspace => {
-        // Create popup
-        const popup = new mapboxgl.Popup({ offset: 25 })
-          .setHTML(`
-            <div class="p-2">
-              <h3 class="font-semibold">${workspace.name}</h3>
-              <p class="text-sm text-gray-600">${workspace.location.address}, ${workspace.location.city}</p>
-              <p class="text-sm text-gray-600">Bs. ${workspace.price.hourly}/hora</p>
-              <a href="/workspace/${workspace.id}" class="text-blue-600 hover:underline text-sm">Ver detalles</a>
-            </div>
-          `);
-
-        // Create marker
-        const marker = new mapboxgl.Marker()
-          .setLngLat([workspace.location.lng, workspace.location.lat])
-          .setPopup(popup)
-          .addTo(map.current!);
-
-        // Add click handler if onSelectWorkspace is provided
-        if (onSelectWorkspace) {
-          marker.getElement().addEventListener('click', () => {
-            onSelectWorkspace(workspace.id);
-          });
-        }
-      });
-    });
-
-    // Cleanup
-    return () => {
-      map.current?.remove();
-    };
-  }, [onSelectWorkspace]);
+  // Posición inicial del mapa (ej. La Paz -> Sucre)
+  const initialPosition: [number, number] = [-19.0333, -65.2627]; // Coordenadas de Sucre, Bolivia [lat, lng]
+  const initialZoom = 13; // Podemos ajustar el zoom si es necesario
 
   return (
     <div className={`w-full ${height} rounded-lg overflow-hidden shadow-lg`}>
-      <div ref={mapContainer} className="w-full h-full" />
+      <MapContainer
+        center={initialPosition}
+        zoom={initialZoom}
+        scrollWheelZoom={false} // Deshabilita el zoom con la rueda del mouse para evitar scrolljacking
+        className="w-full h-full"
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+
+        {workspaces.map(workspace => (
+          <Marker
+            key={workspace.id}
+            position={[workspace.location.lat, workspace.location.lng]} // [lat, lng] para Leaflet
+            eventHandlers={{
+              click: () => {
+                if (onSelectWorkspace) {
+                  onSelectWorkspace(workspace.id);
+                }
+              },
+            }}
+          >
+            <Popup>
+              <div className="p-1">
+                <h3 className="font-semibold">{workspace.name}</h3>
+                <p className="text-sm text-gray-600">{workspace.location.address}, {workspace.location.city}</p>
+                <p className="text-sm text-gray-600">Bs. {workspace.price.hourly}/hora</p>
+                <a href={`/workspace/${workspace.id}`} className="text-blue-600 hover:underline text-sm">Ver detalles</a>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+      </MapContainer>
     </div>
   );
 };

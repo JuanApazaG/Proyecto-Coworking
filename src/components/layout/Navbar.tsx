@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, MapPin, Search, User, Briefcase, Calendar } from 'lucide-react';
+import { Menu, X, MapPin, Search, Briefcase } from 'lucide-react';
 import Logo from '../ui/Logo';
 import LoginModal from '../auth/LoginModal';
 import RegisterModal from '../auth/RegisterModal';

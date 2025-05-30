@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { MenuSquare, Map, SlidersHorizontal } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import { workspaces } from '../data/workspaces';
 import WorkspaceList from '../components/workspace/WorkspaceList';
 import WorkspaceFilter from '../components/workspace/WorkspaceFilter';
@@ -9,14 +10,52 @@ const SearchPage: React.FC = () => {
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
   const [isFilterCollapsed, setIsFilterCollapsed] = useState(false);
   const [selectedWorkspace, setSelectedWorkspace] = useState<string | undefined>(undefined);
-  
-  // This would normally filter workspaces based on search criteria
-  // For this demo, we're just using all workspaces
-  
-  const toggleViewMode = () => {
-    setViewMode(viewMode === 'list' ? 'map' : 'list');
-  };
-  
+  const [searchParams] = useSearchParams();
+  const cityFilter = searchParams.get('city');
+
+  const [selectedType, setSelectedType] = useState<string | 'any'>('any');
+  const [selectedPriceRange, setSelectedPriceRange] = useState<string | 'any'>('any');
+  const [selectedSort, setSelectedSort] = useState<string | 'relevance'>('relevance');
+
+  const filteredAndSortedWorkspaces = useMemo(() => {
+    let filtered = workspaces;
+
+    if (cityFilter && cityFilter !== 'any') {
+      filtered = filtered.filter(workspace => 
+        workspace.location.city.toLowerCase().replace(/ /g, '-') === cityFilter
+      );
+    }
+    
+    if (selectedType && selectedType !== 'any') {
+        filtered = filtered.filter(workspace => workspace.type === selectedType);
+    }
+
+    if (selectedPriceRange && selectedPriceRange !== 'any') {
+        filtered = filtered.filter(workspace => {
+            const [min, max] = selectedPriceRange.split('-').map(Number);
+            const hourlyPrice = workspace.price?.hourly;
+            if (hourlyPrice === undefined) return false;
+            if (isNaN(min) || isNaN(max)) return true;
+            return hourlyPrice >= min && hourlyPrice <= max;
+        });
+    }
+
+    const sorted = [...filtered];
+    switch (selectedSort) {
+      case 'price_low':
+        sorted.sort((a, b) => (a.price?.hourly || 0) - (b.price?.hourly || 0));
+        break;
+      case 'price_high':
+        sorted.sort((a, b) => (b.price?.hourly || 0) - (a.price?.hourly || 0));
+        break;
+      case 'rating':
+        sorted.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        break;
+    }
+
+    return sorted;
+  }, [workspaces, cityFilter, selectedType, selectedPriceRange, selectedSort]);
+
   const toggleFilterCollapse = () => {
     setIsFilterCollapsed(!isFilterCollapsed);
   };
@@ -36,6 +75,12 @@ const SearchPage: React.FC = () => {
             <WorkspaceFilter 
               isCollapsed={isFilterCollapsed}
               onToggleCollapse={toggleFilterCollapse}
+              selectedType={selectedType}
+              setSelectedType={setSelectedType}
+              selectedPriceRange={selectedPriceRange}
+              setSelectedPriceRange={setSelectedPriceRange}
+              selectedSort={selectedSort}
+              setSelectedSort={setSelectedSort}
             />
           </div>
           
@@ -45,7 +90,7 @@ const SearchPage: React.FC = () => {
             <div className="flex justify-between items-center mb-6">
               <div>
                 <h1 className="text-2xl font-bold">Espacios de Trabajo</h1>
-                <p className="text-gray-600">{workspaces.length} resultados encontrados</p>
+                <p className="text-gray-600">{filteredAndSortedWorkspaces.length} resultados encontrados</p>
               </div>
               
               <div className="flex items-center space-x-2">
@@ -53,6 +98,7 @@ const SearchPage: React.FC = () => {
                 <button 
                   className="lg:hidden p-2 rounded-lg border border-gray-300 text-gray-700"
                   onClick={toggleFilterCollapse}
+                  aria-label="Toggle Filter"
                 >
                   <SlidersHorizontal size={20} />
                 </button>
@@ -84,7 +130,11 @@ const SearchPage: React.FC = () => {
                 </div>
                 
                 {/* Sort options */}
-                <select className="p-2 border border-gray-300 rounded-lg text-gray-700 bg-white">
+                <select 
+                  className="p-2 border border-gray-300 rounded-lg text-gray-700 bg-white"
+                  value={selectedSort}
+                  onChange={(e) => setSelectedSort(e.target.value)}
+                >
                   <option value="relevance">Ordenar por: Relevancia</option>
                   <option value="price_low">Precio: Menor a Mayor</option>
                   <option value="price_high">Precio: Mayor a Menor</option>
@@ -127,7 +177,7 @@ const SearchPage: React.FC = () => {
             
             {/* List view (conditionally displayed) */}
             {viewMode === 'list' && (
-              <WorkspaceList workspaces={workspaces} cols={3} />
+              <WorkspaceList workspaces={filteredAndSortedWorkspaces} cols={3} />
             )}
           </div>
         </div>

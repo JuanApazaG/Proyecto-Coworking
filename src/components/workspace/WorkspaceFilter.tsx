@@ -1,79 +1,60 @@
 import React, { useState } from 'react';
 import { Search, Filter, Coffee, Wifi, Power, DollarSign, Volume2, Calendar } from 'lucide-react';
 
-interface FilterState {
-  wifi: boolean;
-  powerOutlets: boolean;
-  coffee: boolean;
-  quiet: boolean;
-  priceRange: [number, number];
-  workspaceType: string[];
-}
-
 interface WorkspaceFilterProps {
-  onFilterChange?: (filters: FilterState) => void;
   isCollapsed?: boolean;
   onToggleCollapse?: () => void;
+  
+  selectedType: string | 'any';
+  setSelectedType: React.Dispatch<React.SetStateAction<string | 'any'> | 'any'>;
+  selectedPriceRange: string | 'any';
+  setSelectedPriceRange: React.Dispatch<React.SetStateAction<string | 'any'> | 'any'>;
+  selectedSort: string | 'relevance';
+  setSelectedSort: React.Dispatch<React.SetStateAction<string | 'relevance'> | 'relevance'>;
 }
 
-const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({ 
-  onFilterChange,
+const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
   isCollapsed = false,
-  onToggleCollapse
+  onToggleCollapse,
+  selectedType,
+  setSelectedType,
+  selectedPriceRange,
+  setSelectedPriceRange,
+  selectedSort,
+  setSelectedSort,
 }) => {
-  const [filters, setFilters] = useState<FilterState>({
+  const [amenitiesState, setAmenitiesState] = useState({
     wifi: false,
     powerOutlets: false,
     coffee: false,
     quiet: false,
-    priceRange: [0, 50],
-    workspaceType: [],
   });
 
-  const handleToggleFilter = (name: keyof FilterState, value: any) => {
-    let newFilters;
-    
-    if (name === 'workspaceType') {
-      const types = [...filters.workspaceType];
-      const index = types.indexOf(value);
-      
-      if (index === -1) {
-        types.push(value);
-      } else {
-        types.splice(index, 1);
-      }
-      
-      newFilters = { ...filters, [name]: types };
-    } else if (typeof value === 'boolean') {
-      newFilters = { ...filters, [name]: !filters[name as keyof FilterState] };
-    } else {
-      newFilters = { ...filters, [name]: value };
-    }
-    
-    setFilters(newFilters);
-    if (onFilterChange) {
-      onFilterChange(newFilters);
-    }
+  const [isDateSelected, setIsDateSelected] = useState(false);
+
+  const handleToggleAmenity = (amenity: keyof typeof amenitiesState) => {
+    setAmenitiesState(prevState => ({
+      ...prevState,
+      [amenity]: !prevState[amenity],
+    }));
   };
 
-  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value);
-    setFilters({
-      ...filters,
-      priceRange: [0, value],
-    });
-    
-    if (onFilterChange) {
-      onFilterChange({
-        ...filters,
-        priceRange: [0, value],
-      });
-    }
+  const handleDateClick = () => {
+    setIsDateSelected(true);
+    alert('Funcionalidad de selección de fecha próximamente.');
   };
+
+  const priceRangeOptions = [
+    { value: 'any', label: 'Cualquier Precio' },
+    { value: '0-5', label: 'Bs. 0-5/hora' },
+    { value: '5-15', label: 'Bs. 5-15/hora' },
+    { value: '15-30', label: 'Bs. 15-30/hora' },
+    { value: '30-50', label: 'Bs. 30-50/hora' },
+    { value: '50-', label: 'Bs. 50+/hora' },
+  ];
 
   return (
     <div className="bg-white rounded-xl shadow-md p-4 w-full">
-      {/* Search bar */}
       <div className="flex items-center bg-gray-100 rounded-lg p-2 mb-4">
         <Search size={20} className="text-gray-500 mr-2" />
         <input
@@ -83,7 +64,6 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
         />
       </div>
       
-      {/* Filter header */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">
           <Filter size={18} className="text-primary-900 mr-2" />
@@ -99,20 +79,18 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
         )}
       </div>
       
-      {/* Filter options - conditionally show based on isCollapsed */}
       {!isCollapsed && (
         <div className="space-y-6">
-          {/* Amenities section */}
           <div>
             <h4 className="font-medium mb-3 text-gray-800">Comodidades</h4>
             <div className="grid grid-cols-2 gap-3">
               <button
                 className={`flex items-center px-3 py-2 rounded-lg text-sm border transition-colors ${
-                  filters.wifi 
+                  amenitiesState.wifi 
                     ? 'bg-primary-50 border-primary-200 text-primary-900' 
                     : 'border-gray-200 text-gray-700 hover:bg-gray-50'
                 }`}
-                onClick={() => handleToggleFilter('wifi', !filters.wifi)}
+                onClick={() => handleToggleAmenity('wifi')}
               >
                 <Wifi size={16} className="mr-2" />
                 WiFi Rápido
@@ -120,11 +98,11 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
               
               <button
                 className={`flex items-center px-3 py-2 rounded-lg text-sm border transition-colors ${
-                  filters.powerOutlets 
+                  amenitiesState.powerOutlets 
                     ? 'bg-primary-50 border-primary-200 text-primary-900' 
                     : 'border-gray-200 text-gray-700 hover:bg-gray-50'
                 }`}
-                onClick={() => handleToggleFilter('powerOutlets', !filters.powerOutlets)}
+                onClick={() => handleToggleAmenity('powerOutlets')}
               >
                 <Power size={16} className="mr-2" />
                 Enchufes
@@ -132,11 +110,11 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
               
               <button
                 className={`flex items-center px-3 py-2 rounded-lg text-sm border transition-colors ${
-                  filters.coffee 
+                  amenitiesState.coffee 
                     ? 'bg-primary-50 border-primary-200 text-primary-900' 
                     : 'border-gray-200 text-gray-700 hover:bg-gray-50'
                 }`}
-                onClick={() => handleToggleFilter('coffee', !filters.coffee)}
+                onClick={() => handleToggleAmenity('coffee')}
               >
                 <Coffee size={16} className="mr-2" />
                 Café
@@ -144,11 +122,11 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
               
               <button
                 className={`flex items-center px-3 py-2 rounded-lg text-sm border transition-colors ${
-                  filters.quiet 
+                  amenitiesState.quiet 
                     ? 'bg-primary-50 border-primary-200 text-primary-900' 
                     : 'border-gray-200 text-gray-700 hover:bg-gray-50'
                 }`}
-                onClick={() => handleToggleFilter('quiet', !filters.quiet)}
+                onClick={() => handleToggleAmenity('quiet')}
               >
                 <Volume2 size={16} className="mr-2" />
                 Ambiente Silencioso
@@ -156,42 +134,36 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
             </div>
           </div>
           
-          {/* Price range slider */}
           <div>
             <h4 className="font-medium mb-3 text-gray-800">Rango de Precio</h4>
-            <div className="mb-1 flex items-center">
-              <DollarSign size={16} className="text-gray-500 mr-1" />
-              <span className="text-sm text-gray-700">Hasta Bs. {filters.priceRange[1]}/hora</span>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="50"
-              value={filters.priceRange[1]}
-              onChange={handlePriceChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span>Bs. 0</span>
-              <span>Bs. 50+</span>
-            </div>
+            <select 
+              className="w-full p-2 border border-gray-300 rounded-lg text-gray-800"
+              value={selectedPriceRange}
+              onChange={(e) => setSelectedPriceRange(e.target.value as string | 'any')}
+            >
+              {priceRangeOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
           
-          {/* Workspace type */}
           <div>
             <h4 className="font-medium mb-3 text-gray-800">Tipo de Espacio</h4>
             <div className="grid grid-cols-2 gap-3">
-              {['coworking', 'cafe', 'library', 'hotel'].map((type) => (
+              {['any', 'coworking', 'cafe', 'library', 'hotel'].map((type) => (
                 <button
                   key={type}
                   className={`px-3 py-2 rounded-lg text-sm border capitalize transition-colors ${
-                    filters.workspaceType.includes(type)
-                      ? 'bg-primary-50 border-primary-200 text-primary-900' 
+                    selectedType === type
+                      ? 'bg-primary-50 border-primary-200 text-primary-900'
                       : 'border-gray-200 text-gray-700 hover:bg-gray-50'
                   }`}
-                  onClick={() => handleToggleFilter('workspaceType', type)}
+                  onClick={() => setSelectedType(type as string | 'any')}
                 >
-                  {type === 'coworking' ? 'Coworking' :
+                  {type === 'any' ? 'Cualquier Tipo' :
+                   type === 'coworking' ? 'Coworking' :
                    type === 'cafe' ? 'Cafetería' :
                    type === 'library' ? 'Biblioteca' :
                    'Hotel'}
@@ -200,18 +172,21 @@ const WorkspaceFilter: React.FC<WorkspaceFilterProps> = ({
             </div>
           </div>
           
-          {/* Date picker placeholder (would be integrated with a date picker library in a real implementation) */}
           <div>
             <h4 className="font-medium mb-3 text-gray-800">Fecha</h4>
             <button
-              className="flex items-center px-3 py-2 rounded-lg text-sm border border-gray-200 text-gray-700 hover:bg-gray-50 w-full"
+              className={`flex items-center px-3 py-2 rounded-lg text-sm border transition-colors w-full ${
+                 isDateSelected
+                    ? 'bg-primary-50 border-primary-200 text-primary-900' 
+                    : 'border-gray-200 text-gray-700 hover:bg-gray-50'
+              }`}
+              onClick={handleDateClick}
             >
               <Calendar size={16} className="mr-2" />
               <span>Seleccionar Fecha</span>
             </button>
           </div>
           
-          {/* Apply filters button */}
           <button className="btn btn-primary w-full">
             Aplicar Filtros
           </button>

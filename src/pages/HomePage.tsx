@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, MapPin, ArrowRight, Calendar, Star, ChevronLeft, ChevronRight, Wifi, Coffee, Power } from 'lucide-react';
 import { workspaces } from '../data/workspaces';
 import WorkspaceCard from '../components/workspace/WorkspaceCard';
 import MapComponent from '../components/map/MapComponent';
+import fondoImage from '../assets/images/fondo.webp';
 
 const HomePage: React.FC = () => {
+  const [selectedCity, setSelectedCity] = useState<string>('');
+  
   // Filter popular workspaces for the featured section
   const featuredWorkspaces = workspaces.filter(workspace => workspace.popular);
+
+  const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCity(event.target.value);
+  };
 
   return (
     <div>
@@ -16,7 +23,7 @@ const HomePage: React.FC = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.pexels.com/photos/887723/pexels-photo-887723.jpeg" 
+            src={fondoImage}
             alt="Workspace" 
             className="w-full h-full object-cover"
           />
@@ -29,19 +36,31 @@ const HomePage: React.FC = () => {
               Encuentra tu Espacio de Trabajo Ideal
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white/90">
-              Descubre espacios de coworking, cafeterías y bibliotecas perfectas para 
-              nómadas digitales, freelancers y estudiantes.
+              Elige dónde trabajar o estudiar con comodidad y buena conexión.
             </p>
             
             {/* Search Box */}
             <div className="bg-white rounded-lg shadow-lg p-4 mb-6">
               <div className="flex items-center bg-gray-100 rounded-lg p-3 mb-4">
                 <MapPin size={20} className="text-gray-500 mr-2" />
-                <input
-                  type="text"
-                  placeholder="¿Dónde quieres trabajar?"
-                  className="bg-transparent border-none outline-none w-full text-gray-800 placeholder-gray-500"
-                />
+                <select
+                    className={`bg-transparent border-none outline-none w-full
+                      ${selectedCity === "" ? "text-gray-400" : "text-gray-800"}
+                      placeholder-gray-500`}
+                    value={selectedCity}
+                    onChange={handleCityChange}
+                  >
+                    <option value="" disabled>
+                      ¿Dónde quieres trabajar?
+                    </option>
+                    <option value="sucre" className="text-gray-800">Sucre</option>
+                    <option value="la-paz" className="text-gray-800">La Paz</option>
+                    <option value="santa-cruz" className="text-gray-800">Santa Cruz</option>
+                    <option value="cochabamba" className="text-gray-800">Cochabamba</option>
+                    <option value="tarija" className="text-gray-800">Tarija</option>
+                    <option value="oruro" className="text-gray-800">Oruro</option>
+                    <option value="potosi" className="text-gray-800">Potosí</option>
+                  </select>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
@@ -77,7 +96,7 @@ const HomePage: React.FC = () => {
               </div>
               
               <Link 
-                to="/search" 
+                to={`/search${selectedCity ? `?city=${selectedCity}` : ''}`}
                 className="btn btn-primary w-full flex items-center justify-center"
               >
                 <Search size={18} className="mr-2" />

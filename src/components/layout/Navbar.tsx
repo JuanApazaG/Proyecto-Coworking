@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, MapPin, Search, User, Briefcase, Calendar } from 'lucide-react';
 import Logo from '../ui/Logo';
+import LoginModal from '../auth/LoginModal';
+import RegisterModal from '../auth/RegisterModal';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +31,24 @@ const Navbar: React.FC = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
+  };
+
+  const handleSwitchToRegister = () => {
+    setIsLoginModalOpen(false);
+    setIsRegisterModalOpen(true);
+  };
+
+  const handleSwitchToLogin = () => {
+    setIsRegisterModalOpen(false);
+    setIsLoginModalOpen(true);
   };
 
   const navLinks = [
@@ -69,10 +93,34 @@ const Navbar: React.FC = () => {
             ))}
           </nav>
 
-          {/* Action Buttons */}
+          {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="btn btn-secondary btn-sm">Iniciar Sesión</button>
-            <button className="btn btn-primary btn-sm">Registrarse</button>
+            {user ? (
+              <div className="flex items-center space-x-4">
+                <span className="text-gray-600">{user.email}</span>
+                <button 
+                  onClick={handleLogout}
+                  className="btn btn-secondary btn-sm"
+                >
+                  Cerrar Sesión
+                </button>
+              </div>
+            ) : (
+              <>
+                <button 
+                  onClick={() => setIsLoginModalOpen(true)}
+                  className="btn btn-secondary btn-sm"
+                >
+                  Iniciar Sesión
+                </button>
+                <button 
+                  onClick={() => setIsRegisterModalOpen(true)}
+                  className="btn btn-primary btn-sm"
+                >
+                  Registrarse
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -106,12 +154,50 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
             <div className="pt-4 flex flex-col space-y-3">
-              <button className="btn btn-secondary">Iniciar Sesión</button>
-              <button className="btn btn-primary">Registrarse</button>
+              {user ? (
+                <>
+                  <span className="text-gray-600">{user.email}</span>
+                  <button 
+                    onClick={handleLogout}
+                    className="btn btn-secondary btn-sm w-full"
+                  >
+                    Cerrar Sesión
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button 
+                    onClick={() => setIsLoginModalOpen(true)}
+                    className="btn btn-secondary btn-sm w-full"
+                  >
+                    Iniciar Sesión
+                  </button>
+                  <button 
+                    onClick={() => setIsRegisterModalOpen(true)}
+                    className="btn btn-primary btn-sm w-full"
+                  >
+                    Registrarse
+                  </button>
+                </>
+              )}
             </div>
           </nav>
         </div>
       )}
+
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)}
+        onSwitchToRegister={handleSwitchToRegister}
+      />
+
+      {/* Register Modal */}
+      <RegisterModal 
+        isOpen={isRegisterModalOpen} 
+        onClose={() => setIsRegisterModalOpen(false)}
+        onSwitchToLogin={handleSwitchToLogin}
+      />
     </header>
   );
 };
